@@ -1566,7 +1566,6 @@
 
     <!-- Context Menu -->
     <string name="copy_message">复制消息</string>
-    <string name="copy_full_message">全部复制</string>
     <string name="chat_hidden_user_message_placeholder">自动触发用户消息（内容已隐藏）</string>
     <string name="chat_hidden_user_message_badge">自动触发</string>
     <string name="info">信息</string>
@@ -1589,7 +1588,7 @@
     <string name="stop_reading">停止朗读</string>
     <string name="edit_and_resend">编辑并重发</string>
     <string name="rollback_to_here">回滚到此处</string>
-    <string name="select_copy">选择复制</string>
+    <string name="select_copy">选择并复制</string>
     <string name="insert_summary">插入总结</string>
     <string name="create_branch">创建分支</string>
     <string name="branch">分支</string>
