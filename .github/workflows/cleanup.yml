@@ -5,9 +5,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - run: |
+      - name: Delete heavy modules
+        run: |
           git config user.name bot
           git config user.email bot@x.com
-          git rm -rf --ignore-unmatch dragonbones/ fbx/ mmd/ mnn/ llama/ showerclient/ examples/ docs/ app/src/main/cpp/ app/src/main/jniLibs/ app/src/main/java/androidx/ app/src/main/java/com/k2fsa/ app/src/main/java/com/ai/assistance/operit/core/avatar/ app/src/main/java/com/ai/assistance/operit/core/chat/ app/src/main/java/com/ai/assistance/operit/core/workflow/ app/src/main/java/com/ai/assistance/operit/api/ app/src/main/java/com/ai/assistance/operit/data/backup/ app/src/main/java/com/ai/assistance/operit/data/collects/ app/src/main/java/com/ai/assistance/operit/data/converter/ app/src/main/java/com/ai/assistance/operit/data/exporter/ app/src/main/java/com/ai/assistance/operit/data/mnn/ app/src/main/java/com/ai/assistance/operit/data/skill/ app/src/main/java/com/ai/assistance/operit/data/updates/ app/src/main/java/com/ai/assistance/operit/data/announcement/ app/src/main/java/com/ai/assistance/operit/integrations/externalchat/ app/src/main/java/com/ai/assistance/operit/integrations/intent/ app/src/main/java/com/ai/assistance/operit/integrations/tasker/ app/src/main/java/com/ai/assistance/operit/plugins/ app/src/main/java/com/ai/assistance/operit/ui/features/ app/src/main/java/com/ai/assistance/operit/ui/floating/ app/src/main/java/com/ai/assistance/operit/widget/
-          git commit -m "chore: strip to core skeleton"
+          rm -rf dragonbones/ fbx/ mmd/ mnn/ llama/ showerclient/ examples/ docs/
+          rm -rf app/src/main/cpp/ app/src/main/jniLibs/
+          rm -rf app/src/main/java/androidx/
+          rm -rf app/src/main/java/com/k2fsa/
+          rm -rf app/src/main/java/com/ai/assistance/operit/core/avatar/
+          rm -rf app/src/main/java/com/ai/assistance/operit/core/chat/
+          rm -rf app/src/main/java/com/ai/assistance/operit/core/workflow/
+          rm -rf app/src/main/java/com/ai/assistance/operit/api/chat/
+          rm -rf app/src/main/java/com/ai/assistance/operit/api/speech/
+          rm -rf app/src/main/java/com/ai/assistance/operit/api/voice/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/backup/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/collects/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/converter/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/exporter/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/mnn/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/skill/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/updates/
+          rm -rf app/src/main/java/com/ai/assistance/operit/data/announcement/
+          rm -rf app/src/main/java/com/ai/assistance/operit/integrations/externalchat/
+          rm -rf app/src/main/java/com/ai/assistance/operit/integrations/intent/
+          rm -rf app/src/main/java/com/ai/assistance/operit/integrations/tasker/
+          rm -rf app/src/main/java/com/ai/assistance/operit/plugins/
+          rm -rf app/src/main/java/com/ai/assistance/operit/ui/features/
+          rm -rf app/src/main/java/com/ai/assistance/operit/ui/floating/
+          rm -rf app/src/main/java/com/ai/assistance/operit/widget/
+          git add -A
+          git commit -m "chore: strip to core skeleton" || echo "nothing to commit"
           git push
