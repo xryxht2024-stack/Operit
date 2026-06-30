@@ -1,86 +1,13 @@
-name: Cleanup Operit Lite
-on:
-  workflow_dispatch:
-    inputs:
-      confirm:
-        description: Type "yes" to confirm
-        required: true
-        default: "no"
-
+name: Cleanup
+on: [workflow_dispatch]
 jobs:
   cleanup:
     runs-on: ubuntu-latest
-    if: github.event.inputs.confirm == "yes"
     steps:
       - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Clean up
-        run: |
-          git config user.name "operit-lite-bot"
-          git config user.email "bot@example.com"
-          
-          # Delete root-level modules
-          git rm -rf --ignore-unmatch dragonbones/ fbx/ mmd/ mnn/ llama/ showerclient/ examples/ docs/
-          
-          # Delete Java packages - UI features
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/chat/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/assistant/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/memory/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/workflow/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/token/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/toolbox/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/update/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/help/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/demo/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/github/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/startup/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/packages/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/settings/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/permission/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/websession/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/agreement/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/announcement/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/features/about/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/ui/floating/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/widget/
-          
-          # Delete core modules
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/core/avatar/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/core/chat/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/core/workflow/
-          
-          # Delete API modules
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/api/chat/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/api/speech/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/api/voice/
-          
-          # Delete data modules
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/backup/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/collects/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/converter/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/exporter/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/mnn/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/skill/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/updates/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/data/announcement/
-          
-          # Delete integrations
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/integrations/externalchat/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/integrations/intent/
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/integrations/tasker/
-          
-          # Delete plugins
-          git rm -rf --ignore-unmatch app/src/main/java/com/ai/assistance/operit/plugins/
-          
-          # Delete native C++ code
-          git rm -rf --ignore-unmatch app/src/main/cpp/
-          app/src/main/jniLibs/
-          
-          # Delete ML/OCR native libs
-          git rm -rf --ignore-unmatch app/src/main/java/com/k2fsa/
-          
-          # Commit
-          git commit -m "chore: strip Operit down to core skeleton"
+      - run: |
+          git config user.name bot
+          git config user.email bot@x.com
+          git rm -rf --ignore-unmatch dragonbones/ fbx/ mmd/ mnn/ llama/ showerclient/ examples/ docs/ app/src/main/cpp/ app/src/main/jniLibs/ app/src/main/java/androidx/ app/src/main/java/com/k2fsa/ app/src/main/java/com/ai/assistance/operit/core/avatar/ app/src/main/java/com/ai/assistance/operit/core/chat/ app/src/main/java/com/ai/assistance/operit/core/workflow/ app/src/main/java/com/ai/assistance/operit/api/ app/src/main/java/com/ai/assistance/operit/data/backup/ app/src/main/java/com/ai/assistance/operit/data/collects/ app/src/main/java/com/ai/assistance/operit/data/converter/ app/src/main/java/com/ai/assistance/operit/data/exporter/ app/src/main/java/com/ai/assistance/operit/data/mnn/ app/src/main/java/com/ai/assistance/operit/data/skill/ app/src/main/java/com/ai/assistance/operit/data/updates/ app/src/main/java/com/ai/assistance/operit/data/announcement/ app/src/main/java/com/ai/assistance/operit/integrations/externalchat/ app/src/main/java/com/ai/assistance/operit/integrations/intent/ app/src/main/java/com/ai/assistance/operit/integrations/tasker/ app/src/main/java/com/ai/assistance/operit/plugins/ app/src/main/java/com/ai/assistance/operit/ui/features/ app/src/main/java/com/ai/assistance/operit/ui/floating/ app/src/main/java/com/ai/assistance/operit/widget/
+          git commit -m "chore: strip to core skeleton"
           git push
-
