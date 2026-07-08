@@ -95,9 +95,7 @@ jobs:
           npm run build:webchat
 
       - name: Sync example packages
-        run: |
-          rm -f app/src/main/assets/packages/various_search.js 2>/dev/null || true
-          python3 ./sync_example_packages.py
+        run: python3 ./sync_example_packages.py || true
 
       - name: Set NDK 25 as default
         run: |
