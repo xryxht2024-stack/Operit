@@ -55,12 +55,10 @@ jobs:
         run: |
           mkdir -p /tmp/deps
           RELEASED=false
-
           if gh release view build-deps --repo ${{ github.repository }} &>/dev/null; then
             echo "→ 从 Release 拉取编译依赖..."
             gh release download build-deps --repo ${{ github.repository }} --dir /tmp/deps && RELEASED=true
           fi
-
           if [ "$RELEASED" != "true" ]; then
             echo "→ Release 不可用，从 Google Drive 下载..."
             pip install gdown -q
@@ -70,7 +68,6 @@ jobs:
               gh release upload build-deps /tmp/deps/*.zip --repo ${{ github.repository }} --clobber || true
             fi
           fi
-
           MISSING=""
           for f in models.zip subpack.zip jniLibs.zip libs.zip; do
             found=$(find /tmp/deps -name "$f" 2>/dev/null | head -1)
@@ -84,7 +81,6 @@ jobs:
             exit 1
           fi
           echo "   All 4 dependency packages confirmed present."
-
           for f in /tmp/deps/*.zip; do
             [ -f "$f" ] || continue
             name=$(basename "$f" .zip)
@@ -111,6 +107,18 @@ jobs:
           else
             echo "⚠️ NDK 25 not found at $NDK25, using system default"
           fi
+
+      - name: Build native ripgrep (Rust)
+        run: |
+          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+          source "$HOME/.cargo/env"
+          rustup target add aarch64-linux-android
+          export CC_aarch64_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang
+          export AR_aarch64_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
+          export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=$CC_aarch64_linux_android
+          cd tools/native_ripgrep
+          cargo build --target aarch64-linux-android --release
+          cp target/aarch64-linux-android/release/liboperit_ripgrep.so ../../app/src/main/jniLibs/arm64-v8a/
 
       - name: Build APK (Nightly)
         run: |
