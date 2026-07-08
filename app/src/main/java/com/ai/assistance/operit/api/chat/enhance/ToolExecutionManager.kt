@@ -461,7 +461,7 @@ object ToolExecutionManager {
                         toolName = resolvedTarget.displayName,
                         success = false,
                         result = StringResultData(""),
-                        error = "User cancelled the tool execution."
+                        error = "⚠️此工具已被系统禁止调用"
                     )
                 toolHandler.notifyToolPermissionChecked(
                     permissionTool,
