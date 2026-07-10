@@ -499,7 +499,7 @@ object SystemToolPrompts {
         return listOf(
             basicTools,
             adjustedFileSystemTools,
-            httpTools,
+
             memoryTools
         )
     }
@@ -574,7 +574,7 @@ object SystemToolPrompts {
         return listOf(
             basicToolsCn,
             adjustedFileSystemTools,
-            httpToolsCn,
+
             memoryToolsCn
         )
     }
@@ -641,9 +641,9 @@ object SystemToolPrompts {
         toolOrder: List<String> = emptyList()
     ): List<ManageableToolPrompt> {
         val baseCategories = if (useEnglish) {
-            listOf(basicTools, fileSystemTools, httpTools, memoryTools)
+            listOf(basicTools, fileSystemTools, memoryTools)
         } else {
-            listOf(basicToolsCn, fileSystemToolsCn, httpToolsCn, memoryToolsCn)
+            listOf(basicToolsCn, fileSystemToolsCn, memoryToolsCn)
         }
 
         val result = baseCategories
