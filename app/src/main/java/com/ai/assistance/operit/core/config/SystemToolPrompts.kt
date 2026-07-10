@@ -223,7 +223,7 @@ object SystemToolPrompts {
             ),
             ToolPrompt(
                 name = "download_file",
-                description = "Download a file from the internet. Two modes: (1) Provide `url` + `destination`. (2) Provide `visit_key` + (`link_number` or `image_number`) + `destination` to download an item by index from a previous result.",
+                description = "Download a file from the internet. Two modes: (1) Provide `url` + `destination`. (2) Provide `visit_key` + (`link_number` or `image_number`) + `destination` to download an item by index by index from a previous result.",
                 parametersStructured = listOf(
                     ToolParameterSchema(name = "url", type = "string", description = "optional, file URL. If omitted, use visit_key + link_number/image_number to download from a previous result", required = false),
                     ToolParameterSchema(name = "visit_key", type = "string", description = "optional, visitKey from a previous result", required = false),
@@ -303,87 +303,6 @@ object SystemToolPrompts {
                     ToolParameterSchema(name = "new", type = "string", description = "新文件的完整内容", required = true),
                     ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false)
                 )
-            ),
-            ToolPrompt(
-                name = "edit_file",
-                description = "通过委托给 apply_file 且 type=replace 来编辑已存在文件。",
-                parametersStructured = listOf(
-                    ToolParameterSchema(name = "path", type = "string", description = "文件路径", required = true),
-                    ToolParameterSchema(name = "old", type = "string", description = "用于匹配并替换的原始内容", required = true),
-                    ToolParameterSchema(name = "new", type = "string", description = "要插入的新内容", required = true),
-                    ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false)
-                )
-            ),
-            ToolPrompt(
-                name = "delete_file",
-                description = "删除文件或目录。",
-                parametersStructured = listOf(
-                    ToolParameterSchema(name = "path", type = "string", description = "目标路径", required = true),
-                    ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false),
-                    ToolParameterSchema(name = "recursive", type = "boolean", description = "布尔值", required = false, default = "false")
-                )
-            ),
-            ToolPrompt(
-                name = "make_directory",
-                description = "创建目录。",
-                parametersStructured = listOf(
-                    ToolParameterSchema(name = "path", type = "string", description = "目录路径", required = true),
-                    ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false),
-                    ToolParameterSchema(name = "create_parents", type = "boolean", description = "布尔值", required = false, default = "false")
-                )
-            ),
-            ToolPrompt(
-                name = "find_files",
-                description = "搜索匹配模式的文件。",
-                parametersStructured = listOf(
-                    ToolParameterSchema(name = "path", type = "string", description = "搜索路径，Android用/sdcard/...，Linux用/home/...或/etc/...", required = true),
-                    ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false),
-                    ToolParameterSchema(name = "pattern", type = "string", description = "搜索模式，例如\"*.jpg\"", required = true),
-                    ToolParameterSchema(name = "max_depth", type = "integer", description = "可选，控制子目录搜索深度，-1=无限", required = false),
-                    ToolParameterSchema(name = "use_path_pattern", type = "boolean", description = "布尔值", required = false, default = "false"),
-                    ToolParameterSchema(name = "case_insensitive", type = "boolean", description = "布尔值", required = false, default = "false")
-                )
-            ),
-            ToolPrompt(
-                name = "grep_code",
-                description = "在文件中搜索匹配正则表达式的代码内容，返回带上下文的匹配结果。",
-                parametersStructured = listOf(
-                    ToolParameterSchema(name = "path", type = "string", description = "搜索路径", required = true),
-                    ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false),
-                    ToolParameterSchema(name = "pattern", type = "string", description = "正则表达式模式", required = true),
-                    ToolParameterSchema(name = "file_pattern", type = "string", description = "文件过滤", required = false, default = "\"*\""),
-                    ToolParameterSchema(name = "case_insensitive", type = "boolean", description = "布尔值", required = false, default = "false"),
-                    ToolParameterSchema(name = "context_lines", type = "integer", description = "匹配行前后的上下文行数", required = false, default = "3"),
-                    ToolParameterSchema(name = "max_results", type = "integer", description = "最大匹配数", required = false, default = "100")
-                )
-            ),
-            ToolPrompt(
-                name = "grep_context",
-                description = "基于意图/上下文理解搜索相关内容。支持两种模式：1) 目录模式：当path是目录时，找出最相关的文件。2) 文件模式：当path是文件时，找出该文件内最相关的代码段。使用语义相关性评分。",
-                parametersStructured = listOf(
-                    ToolParameterSchema(name = "path", type = "string", description = "目录或文件路径", required = true),
-                    ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false),
-                    ToolParameterSchema(name = "intent", type = "string", description = "意图或上下文描述字符串", required = true),
-                    ToolParameterSchema(name = "file_pattern", type = "string", description = "目录模式下的文件过滤", required = false, default = "\"*\""),
-                    ToolParameterSchema(name = "max_results", type = "integer", description = "返回的最大项数", required = false, default = "10")
-                )
-            ),
-            ToolPrompt(
-                name = "download_file",
-                description = "从互联网下载文件。有两种用法：1）提供 `url` + `destination` 直接下载。2）提供 `visit_key` +（`link_number` 或 `image_number`）+ `destination`，按序号从上一次结果的编号中下载。",
-                parametersStructured = listOf(
-                    ToolParameterSchema(name = "url", type = "string", description = "可选, 文件URL。不传时可使用 visit_key + link_number/image_number 从上一次 结果按编号下载", required = false),
-                    ToolParameterSchema(name = "visit_key", type = "string", description = "可选, 上一次 返回的 visitKey", required = false),
-                    ToolParameterSchema(name = "link_number", type = "integer", description = "可选, 整数, Results 中的链接编号（从1开始，需要配合 visit_key）", required = false),
-                    ToolParameterSchema(name = "image_number", type = "integer", description = "可选, 整数, Images 中的图片编号（从1开始，需要配合 visit_key）", required = false),
-                    ToolParameterSchema(name = "destination", type = "string", description = "保存路径", required = true),
-                    ToolParameterSchema(name = "environment", type = "string", description = "可选，同 read_file 的 environment", required = false),
-                    ToolParameterSchema(name = "headers", type = "string", description = "可选：HTTP请求头，JSON对象字符串，例如{\"Referer\":\"...\"}", required = false)
-                )
-            )
-        )
-    )
-        )
     val memoryTools = SystemToolPromptCategory(
         categoryName = "Memory and Memory Library Tools",
         tools = listOf(
@@ -499,7 +418,7 @@ object SystemToolPrompts {
         return listOf(
             basicTools,
             adjustedFileSystemTools,
-
+            httpTools,
             memoryTools
         )
     }
@@ -574,7 +493,7 @@ object SystemToolPrompts {
         return listOf(
             basicToolsCn,
             adjustedFileSystemTools,
-
+            httpToolsCn,
             memoryToolsCn
         )
     }
