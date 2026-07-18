@@ -108,18 +108,6 @@ jobs:
             echo "⚠️ NDK 25 not found at $NDK25, using system default"
           fi
 
-      - name: Build native ripgrep (Rust)
-        run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          source "$HOME/.cargo/env"
-          rustup target add aarch64-linux-android
-          export CC_aarch64_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang
-          export AR_aarch64_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
-          export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=$CC_aarch64_linux_android
-          cd tools/native_ripgrep
-          cargo build --target aarch64-linux-android --release
-          cp target/aarch64-linux-android/release/liboperit_ripgrep.so ../../app/src/main/jniLibs/arm64-v8a/
-
       - name: Build APK (Nightly)
         run: |
           chmod +x ./gradlew
