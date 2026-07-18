@@ -244,3 +244,148 @@ class DisplayPreferencesManager private constructor(private val context: Context
             preferences[KEY_SCREENSHOT_SCALE_PERCENT] ?: 75
         }
 
+        context.displayPreferencesDataStore.data.map { preferences ->
+        }
+
+    val virtualDisplayBitrateKbps: Flow<Int> =
+        context.displayPreferencesDataStore.data.map { preferences ->
+            preferences[KEY_VIRTUAL_DISPLAY_BITRATE_KBPS] ?: 3000
+        }
+
+    val toolCollapseMode: Flow<ToolCollapseMode> =
+        context.displayPreferencesDataStore.data.map { preferences ->
+            ToolCollapseMode.fromValue(preferences[KEY_TOOL_COLLAPSE_MODE])
+        }
+
+    /**
+     * 保存显示设置
+     */
+    suspend fun saveDisplaySettings(
+        showModelProvider: Boolean? = null,
+        showModelName: Boolean? = null,
+        showRoleName: Boolean? = null,
+        showUserName: Boolean? = null,
+        showMessageTokenStats: Boolean? = null,
+        showMessageTimingStats: Boolean? = null,
+        showMessageTimestamp: Boolean? = null,
+        globalUserAvatarUri: String? = null,
+        globalUserName: String? = null,
+        showFpsCounter: Boolean? = null,
+        enableReplyNotification: Boolean? = null,
+        enableReplyNotificationSound: Boolean? = null,
+        enableReplyNotificationVibration: Boolean? = null,
+        enableEnterToSend: Boolean? = null,
+        enableNavigationAnimation: Boolean? = null,
+        enableBackgroundKeepAlive: Boolean? = null,
+        enableExperimentalVirtualDisplay: Boolean? = null,
+        hideRuntimeTaskView: Boolean? = null,
+        screenshotFormat: String? = null,
+        screenshotQuality: Int? = null,
+        screenshotScalePercent: Int? = null,
+        virtualDisplayBitrateKbps: Int? = null,
+        toolCollapseMode: ToolCollapseMode? = null
+    ) {
+        context.displayPreferencesDataStore.edit { preferences ->
+            showModelProvider?.let { preferences[KEY_SHOW_MODEL_PROVIDER] = it }
+            showModelName?.let { preferences[KEY_SHOW_MODEL_NAME] = it }
+            showRoleName?.let { preferences[KEY_SHOW_ROLE_NAME] = it }
+            showUserName?.let { preferences[KEY_SHOW_USER_NAME] = it }
+            showMessageTokenStats?.let { preferences[KEY_SHOW_MESSAGE_TOKEN_STATS] = it }
+            showMessageTimingStats?.let { preferences[KEY_SHOW_MESSAGE_TIMING_STATS] = it }
+            showMessageTimestamp?.let { preferences[KEY_SHOW_MESSAGE_TIMESTAMP] = it }
+            globalUserAvatarUri?.let { preferences[KEY_GLOBAL_USER_AVATAR_URI] = it }
+            globalUserName?.let { preferences[KEY_GLOBAL_USER_NAME] = it }
+            showFpsCounter?.let { preferences[KEY_SHOW_FPS_COUNTER] = it }
+            enableReplyNotification?.let { preferences[KEY_ENABLE_REPLY_NOTIFICATION] = it }
+            enableReplyNotificationSound?.let {
+                preferences[KEY_ENABLE_REPLY_NOTIFICATION_SOUND] = it
+            }
+            enableReplyNotificationVibration?.let {
+                preferences[KEY_ENABLE_REPLY_NOTIFICATION_VIBRATION] = it
+            }
+            enableEnterToSend?.let { preferences[KEY_ENABLE_ENTER_TO_SEND] = it }
+            enableNavigationAnimation?.let {
+                preferences[KEY_ENABLE_NAVIGATION_ANIMATION] = it
+            }
+            enableBackgroundKeepAlive?.let {
+                preferences[KEY_ENABLE_BACKGROUND_KEEP_ALIVE] = it
+            }
+            enableExperimentalVirtualDisplay?.let {
+                preferences[KEY_ENABLE_EXPERIMENTAL_VIRTUAL_DISPLAY] = it
+            }
+            hideRuntimeTaskView?.let {
+                preferences[KEY_HIDE_RUNTIME_TASK_VIEW] = it
+            }
+            screenshotFormat?.let { preferences[KEY_SCREENSHOT_FORMAT] = it }
+            screenshotQuality?.let { preferences[KEY_SCREENSHOT_QUALITY] = it }
+            screenshotScalePercent?.let { preferences[KEY_SCREENSHOT_SCALE_PERCENT] = it }
+            virtualDisplayBitrateKbps?.let { preferences[KEY_VIRTUAL_DISPLAY_BITRATE_KBPS] = it }
+            toolCollapseMode?.let { preferences[KEY_TOOL_COLLAPSE_MODE] = it.value }
+        }
+    }
+
+    fun isExperimentalVirtualDisplayEnabled(): Boolean {
+        return runBlocking {
+            enableExperimentalVirtualDisplay.first()
+        }
+    }
+
+    fun getScreenshotFormat(): String {
+        return runBlocking {
+            screenshotFormat.first()
+        }
+    }
+
+    fun getScreenshotQuality(): Int {
+        return runBlocking {
+            screenshotQuality.first()
+        }
+    }
+
+    fun getScreenshotScalePercent(): Int {
+        return runBlocking {
+            screenshotScalePercent.first()
+        }
+    }
+
+    fun getVisitWebWaitSeconds(): Int {
+        return runBlocking {
+        }
+    }
+
+    fun getVirtualDisplayBitrateKbps(): Int {
+        return runBlocking {
+            virtualDisplayBitrateKbps.first()
+        }
+    }
+
+    /**
+     * 重置所有显示设置为默认值
+     */
+    suspend fun resetDisplaySettings() {
+        context.displayPreferencesDataStore.edit { preferences ->
+            preferences[KEY_SHOW_MODEL_PROVIDER] = false
+            preferences[KEY_SHOW_MODEL_NAME] = false
+            preferences[KEY_SHOW_ROLE_NAME] = false
+            preferences[KEY_SHOW_USER_NAME] = false
+            preferences[KEY_SHOW_MESSAGE_TOKEN_STATS] = false
+            preferences[KEY_SHOW_MESSAGE_TIMING_STATS] = false
+            preferences.remove(KEY_GLOBAL_USER_AVATAR_URI)
+            preferences.remove(KEY_GLOBAL_USER_NAME)
+            preferences[KEY_SHOW_FPS_COUNTER] = false
+            preferences[KEY_ENABLE_REPLY_NOTIFICATION] = true
+            preferences[KEY_ENABLE_REPLY_NOTIFICATION_SOUND] = false
+            preferences[KEY_ENABLE_REPLY_NOTIFICATION_VIBRATION] = false
+            preferences[KEY_ENABLE_ENTER_TO_SEND] = false
+            preferences.remove(KEY_ENABLE_NAVIGATION_ANIMATION)
+            preferences[KEY_ENABLE_BACKGROUND_KEEP_ALIVE] = false
+            preferences[KEY_ENABLE_EXPERIMENTAL_VIRTUAL_DISPLAY] = true
+            preferences[KEY_HIDE_RUNTIME_TASK_VIEW] = false
+            preferences.remove(KEY_SCREENSHOT_FORMAT)
+            preferences.remove(KEY_SCREENSHOT_QUALITY)
+            preferences.remove(KEY_SCREENSHOT_SCALE_PERCENT)
+            preferences.remove(KEY_VIRTUAL_DISPLAY_BITRATE_KBPS)
+            preferences.remove(KEY_TOOL_COLLAPSE_MODE)
+        }
+    }
+}
