@@ -12,9 +12,6 @@ class ToolExecutionManagerTest {
     @Test
     fun extractToolInvocations_shouldKeepAllToolBlocksInSameChunk() = runBlocking {
         val response = """
-            <tool_A1 name="visit_web"><param name="url">https://www.baidu.com</param></tool_A1>
-            <tool_B2 name="visit_web"><param name="url">https://www.bing.com</param></tool_B2>
-            <tool_C3 name="visit_web"><param name="url">https://www.github.com</param></tool_C3>
         """.trimIndent()
 
         val invocations = ToolExecutionManager.extractToolInvocations(response)

@@ -68,7 +68,6 @@ fun GlobalDisplaySettingsScreen(
     val screenshotFormat by displayPreferencesManager.screenshotFormat.collectAsState(initial = "JPG")
     val screenshotQuality by displayPreferencesManager.screenshotQuality.collectAsState(initial = 75)
     val screenshotScalePercent by displayPreferencesManager.screenshotScalePercent.collectAsState(initial = 75)
-    val visitWebWaitSeconds by displayPreferencesManager.visitWebWaitSeconds.collectAsState(initial = 0)
     val virtualDisplayBitrateKbps by displayPreferencesManager.virtualDisplayBitrateKbps.collectAsState(initial = 3000)
     val keepScreenOn by apiPreferences.keepScreenOnFlow.collectAsState(initial = true)
 
@@ -89,8 +88,6 @@ fun GlobalDisplaySettingsScreen(
     var collapseModeSliderValue by remember(toolCollapseMode) {
         mutableFloatStateOf(collapseModeOptions.indexOf(toolCollapseMode).coerceAtLeast(0).toFloat())
     }
-    var visitWebWaitSliderValue by remember(visitWebWaitSeconds) {
-        mutableFloatStateOf(visitWebWaitSeconds.toFloat())
     }
     var qualitySliderValue by remember(screenshotQuality) {
         mutableFloatStateOf(screenshotQuality.toFloat())
@@ -135,19 +132,16 @@ fun GlobalDisplaySettingsScreen(
 
     LaunchedEffect(
         collapseModeSliderValue,
-        visitWebWaitSliderValue,
         qualitySliderValue,
         scaleSliderValue
     ) {
         val localCollapseMode =
             collapseModeOptions[collapseModeSliderValue.roundToInt().coerceIn(0, collapseModeOptions.lastIndex)]
-        val localVisitWebWaitSeconds = visitWebWaitSliderValue.roundToInt().coerceIn(0, 10)
         val localScreenshotQuality = qualitySliderValue.roundToInt().coerceIn(50, 100)
         val localScreenshotScalePercent = scaleSliderValue.roundToInt().coerceIn(50, 100)
 
         val hasPendingSliderChanges =
             localCollapseMode != toolCollapseMode ||
-                localVisitWebWaitSeconds != visitWebWaitSeconds ||
                 localScreenshotQuality != screenshotQuality ||
                 localScreenshotScalePercent != screenshotScalePercent
 
@@ -157,7 +151,6 @@ fun GlobalDisplaySettingsScreen(
 
         displayPreferencesManager.saveDisplaySettings(
             toolCollapseMode = if (localCollapseMode != toolCollapseMode) localCollapseMode else null,
-            visitWebWaitSeconds = if (localVisitWebWaitSeconds != visitWebWaitSeconds) localVisitWebWaitSeconds else null,
             screenshotQuality = if (localScreenshotQuality != screenshotQuality) localScreenshotQuality else null,
             screenshotScalePercent = if (localScreenshotScalePercent != screenshotScalePercent) localScreenshotScalePercent else null
         )
@@ -452,13 +445,11 @@ fun GlobalDisplaySettingsScreen(
                     .padding(horizontal = 12.dp, vertical = 8.dp)
             ) {
                 Text(
-                    text = stringResource(R.string.visit_web_wait_time_title),
                     style = MaterialTheme.typography.bodyMedium,
                     fontWeight = FontWeight.Medium
                 )
                 Spacer(modifier = Modifier.height(2.dp))
                 Text(
-                    text = stringResource(R.string.visit_web_wait_time_description),
                     style = MaterialTheme.typography.bodySmall,
                     color = MaterialTheme.colorScheme.onSurfaceVariant
                 )
@@ -468,15 +459,12 @@ fun GlobalDisplaySettingsScreen(
                     verticalAlignment = Alignment.CenterVertically
                 ) {
                     Slider(
-                        value = visitWebWaitSliderValue,
-                        onValueChange = { visitWebWaitSliderValue = it.roundToInt().toFloat() },
                         valueRange = 0f..10f,
                         steps = 9,
                         modifier = Modifier.weight(1f).padding(vertical = 8.dp),
                     )
                     Spacer(modifier = Modifier.width(8.dp))
                     Text(
-                        text = stringResource(R.string.visit_web_wait_time_value, visitWebWaitSliderValue.roundToInt()),
                         style = MaterialTheme.typography.bodySmall
                     )
                 }

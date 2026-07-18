@@ -584,10 +584,7 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
             position = templateNodePosition(0)
         )
 
-        val visitWeb = ExecuteNode(
             id = visitId,
-            name = context.getString(R.string.workflow_action_visit_web),
-            actionType = "visit_web",
             actionConfig = mapOf(
                 "url" to ParameterValue.StaticValue("https://example.com")
             ),
@@ -617,7 +614,6 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
         val followFirstLink = ExecuteNode(
             id = followLinkId,
             name = context.getString(R.string.workflow_action_match_open_link),
-            actionType = "visit_web",
             actionConfig = mapOf(
                 "visit_key" to ParameterValue.NodeReference(extractVisitKeyId),
                 "link_number" to ParameterValue.StaticValue("1")
@@ -628,7 +624,6 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
         val fallbackVisit = ExecuteNode(
             id = fallbackVisitId,
             name = context.getString(R.string.workflow_action_no_match_backup),
-            actionType = "visit_web",
             actionConfig = mapOf(
                 "url" to ParameterValue.StaticValue("https://example.org")
             ),
@@ -648,7 +643,6 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
             description = description,
             nodes = listOf(
                 trigger,
-                visitWeb,
                 extractVisitKey,
                 condition,
                 followFirstLink,
@@ -675,10 +669,7 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
             position = templateNodePosition(0)
         )
 
-        val visitWeb = ExecuteNode(
             id = visitId,
-            name = context.getString(R.string.workflow_action_visit_web),
-            actionType = "visit_web",
             actionConfig = mapOf(
                 "url" to ParameterValue.StaticValue("https://example.com")
             ),
@@ -724,7 +715,6 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
         val followFirstLink = ExecuteNode(
             id = followLinkId,
             name = context.getString(R.string.workflow_action_logic_true),
-            actionType = "visit_web",
             actionConfig = mapOf(
                 "visit_key" to ParameterValue.NodeReference(extractVisitKeyId),
                 "link_number" to ParameterValue.StaticValue("1")
@@ -735,7 +725,6 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
         val fallbackVisit = ExecuteNode(
             id = fallbackVisitId,
             name = context.getString(R.string.workflow_action_logic_false),
-            actionType = "visit_web",
             actionConfig = mapOf(
                 "url" to ParameterValue.StaticValue("https://example.org")
             ),
@@ -760,7 +749,6 @@ class WorkflowViewModel(application: Application) : AndroidViewModel(application
             nodes = listOf(
                 trigger,
                 logic,
-                visitWeb,
                 conditionA,
                 conditionB,
                 extractVisitKey,

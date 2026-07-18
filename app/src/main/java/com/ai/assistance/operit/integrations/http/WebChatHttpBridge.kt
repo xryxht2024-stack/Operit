@@ -2123,7 +2123,7 @@ class WebChatHttpBridge(
             "read_file_binary",
             "use_package",
             "find_files",
-            "visit_web"
+            
         )
     }
 

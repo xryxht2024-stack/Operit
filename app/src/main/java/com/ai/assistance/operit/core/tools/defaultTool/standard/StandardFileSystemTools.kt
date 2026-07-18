@@ -4683,59 +4683,18 @@ open class StandardFileSystemTools(protected val context: Context) {
         var resolvedUrl = urlParam
 
         if (resolvedUrl.isBlank()) {
-            val linkNumber = parseIndex(linkNumberStr)
-            val imageNumber = parseIndex(imageNumberStr)
-            if (visitKey.isBlank() || (linkNumber == null && imageNumber == null)) {
-                return ToolResult(
-                    toolName = tool.name,
-                    success = false,
-                    result =
-                    FileOperationData(
-                        operation = "download",
-                        path = destPath,
-                        successful = false,
-                        details = "Either url or (visit_key + link_number/image_number) is required"
-                    ),
-                    error = "Either url or (visit_key + link_number/image_number) is required"
-                )
-            }
-
-            val cached = StandardWebVisitTool.getCachedVisitResult(visitKey)
-            if (cached == null) {
-                return ToolResult(
-                    toolName = tool.name,
-                    success = false,
-                    result =
-                    FileOperationData(
-                        operation = "download",
-                        path = destPath,
-                        successful = false,
-                        details = "Invalid visit key."
-                    ),
-                    error = "Invalid visit key."
-                )
-            }
-
-            resolvedUrl =
-                when {
-                    linkNumber != null -> cached.links.getOrNull(linkNumber - 1)?.url
-                    else -> cached.imageLinks.getOrNull(imageNumber!! - 1)
-                } ?: ""
-
-            if (resolvedUrl.isBlank()) {
-                return ToolResult(
-                    toolName = tool.name,
-                    success = false,
-                    result =
-                    FileOperationData(
-                        operation = "download",
-                        path = destPath,
-                        successful = false,
-                        details = "Index out of bounds."
-                    ),
-                    error = "Index out of bounds."
-                )
-            }
+            return ToolResult(
+                toolName = tool.name,
+                success = false,
+                result =
+                FileOperationData(
+                    operation = "download",
+                    path = destPath,
+                    successful = false,
+                    details = "URL parameter is required"
+                ),
+                error = "URL parameter is required"
+            )
         }
 
         if (resolvedUrl.isBlank() || destPath.isBlank()) {
