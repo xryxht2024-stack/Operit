@@ -51,7 +51,6 @@ interface ToolResultMap {
 ### 网络操作
 
 - `http_request` → `HttpResponseData`
-- `visit_web` → `VisitWebResultData`
 - `browser_click` → `StringResultData`
 - `browser_close` → `StringResultData`
 - `browser_close_all` → `StringResultData`

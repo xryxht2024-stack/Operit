@@ -231,19 +231,6 @@ export interface Link {
 /**
  * Web page visit result data
  */
-export interface VisitWebResultData {
-    url: string;
-    title: string;
-    content: string;
-    metadata?: Record<string, string>;
-    links?: Link[];
-    imageLinks?: string[];
-    visitKey?: string;
-    contentSavedTo?: string;
-    contentTruncated?: boolean;
-    originalContentLength?: number;
-    toString(): string;
-}
 
 // ============================================================================
 // Device Information Types
@@ -719,7 +706,6 @@ export interface HttpResponseResult extends BaseResult {
 }
 
 export interface VisitWebResult extends BaseResult {
-    data: VisitWebResultData;
 }
 
 export interface SystemSettingResult extends BaseResult {

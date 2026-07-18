@@ -39,7 +39,6 @@ import {
     FindFilesResultData as _FindFilesResultData,
     FileInfoData as _FileInfoData,
     HttpResponseData as _HttpResponseData,
-    VisitWebResultData as _VisitWebResultData,
     TerminalCommandResultData as _TerminalCommandResultData,
     TerminalStreamEventData as _TerminalStreamEventData,
     HiddenTerminalCommandResultData as _HiddenTerminalCommandResultData,
@@ -191,7 +190,6 @@ declare global {
     type FindFilesResultData = _FindFilesResultData;
     type FileInfoData = _FileInfoData;
     type HttpResponseData = _HttpResponseData;
-    type VisitWebResultData = _VisitWebResultData;
     type TerminalCommandResultData = _TerminalCommandResultData;
     type TerminalStreamEventData = _TerminalStreamEventData;
     type HiddenTerminalCommandResultData = _HiddenTerminalCommandResultData;

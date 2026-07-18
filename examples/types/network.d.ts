@@ -2,7 +2,7 @@
  * Network operation type definitions for Assistance Package Tools
  */
 
-import { HttpResponseData, VisitWebResultData, StringResultData } from './results';
+import { HttpResponseData, StringResultData } from './results';
 
 /**
  * Network operations namespace

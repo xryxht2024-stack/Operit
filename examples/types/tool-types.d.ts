@@ -7,7 +7,7 @@
 import {
     DirectoryListingData, FileContentData, BinaryFileContentData, FileOperationData, FileExistsData,
     FindFilesResultData, FileInfoData, FileConversionResultData, FileFormatConversionsResultData,
-    HttpResponseData, VisitWebResultData,
+    HttpResponseData,
     SleepResultData, StringResultData, SystemSettingData, AppOperationData, AppListData,
     DeviceInfoResultData, NotificationData, LocationData,
     UIPageResultData, UIActionResultData, CombinedOperationResultData, AutomationExecutionResultData,
@@ -57,7 +57,6 @@ export interface ToolResultMap {
 
     // Network operations
     'http_request': HttpResponseData;
-    'visit_web': VisitWebResultData;
     'browser_click': StringResultData;
     'browser_close': StringResultData;
     'browser_close_all': StringResultData;
