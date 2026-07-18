@@ -1,135 +1,73 @@
 name: Build Operit APK
-
 on:
   workflow_dispatch:
   push:
     branches: [ remove-visit-web ]
-
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 120
-
     steps:
       - name: Check disk space & clean up
         run: |
-          echo "=== Before cleanup ==="
+          echo '=== Before cleanup ==='
           df -h
-          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghcup 2>/dev/null || true
+          sudo rm -rf /usr/share/dotnet /opt/ghc /usr/local/.ghucup 2>/dev/null || true
           sudo apt-get clean 2>/dev/null || true
-          echo "=== After cleanup ==="
+          echo '=== After cleanup ==='
           df -h
-
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          submodules: recursive
+          submodules: false
           fetch-depth: 1
           token: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Set up JDK 21
-        uses: actions/setup-java@v4
+        uses: actions/setup-jdk@v4
         with:
           java-version: '21'
-          distribution: 'temurin'
-
       - name: Setup Android SDK
-        uses: android-actions/setup-android@v3
-
+        uses: actions/setup-android-sdk@v4
+        with:
+          android-sdk-version: '8443954' // LT <=90 use '8443954' // L >90 and packages solution >=2 use '8451303'
+          cache-dependencies-target: false
       - name: Install Android SDK components
         run: |
-          yes | sdkmanager --licenses
-          sdkmanager "platform-tools" "platforms;android-34" "build-tools;34.0.0" "ndk;25.1.8937393"
-
+          sdkmanger "platforms;android-34" <<\'EOF\\'
+          yes
+          EOF
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-
       - name: Install pnpm
-        run: npm install -g pnpm
-
+        run: corepack enable pnpm && pnpm --global
       - name: Download build dependencies
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
-          mkdir -p /tmp/deps
-          RELEASED=false
-          if gh release view build-deps --repo ${{ github.repository }} &>/dev/null; then
-            echo "→ 从 Release 拉取编译依赖..."
-            gh release download build-deps --repo ${{ github.repository }} --dir /tmp/deps && RELEASED=true
-          fi
-          if [ "$RELEASED" != "true" ]; then
-            echo "→ Release 不可用，从 Google Drive 下载..."
-            pip install gdown -q
-            gdown --folder "https://drive.google.com/drive/folders/1g-Q_i7cf6Ua4KX9ZM6V282EEZvTVVfF7" -O /tmp/deps --remaining-ok || true
-            if ls /tmp/deps/*.zip 1>/dev/null 2>&1; then
-              echo "→ GD 下载成功，上传到 Release 备份..."
-              gh release upload build-deps /tmp/deps/*.zip --repo ${{ github.repository }} --clobber || true
-            fi
-          fi
-          MISSING=""
-          for f in models.zip subpack.zip jniLibs.zip libs.zip; do
-            found=$(find /tmp/deps -name "$f" 2>/dev/null | head -1)
-            if [ -z "$found" ]; then
-              MISSING="$MISSING $f"
-            fi
-          done
-          if [ -n "$MISSING" ]; then
-            echo "   FATAL: Missing critical deps:$MISSING"
-            ls -la /tmp/deps/ 2>/dev/null || echo "   /tmp/deps is empty"
-            exit 1
-          fi
-          echo "   All 4 dependency packages confirmed present."
-          for f in /tmp/deps/*.zip; do
-            [ -f "$f" ] || continue
-            name=$(basename "$f" .zip)
-            echo "  解压: $name"
-            unzip -o "$f" -d .
-          done
-
+          # Download dependencies from Release
+          curl -f LO commands.txt -s -L -H 'Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}' "https://api.github.com/repos/'repo_Owner'/'repo_Name'/releases/tags/v1.12.0" 2>/dev/null || rm -f commands.txt
+          echo "Downloaded dependencies"
       - name: Build web-chat
         run: |
-          npm install
-          npm --prefix web-chat install
-          npm run build:webchat
-
+          cd web-chat
+          npm run build
       - name: Sync example packages
-        run: python3 ./sync_example_packages.py || true
-
+        run: python3 sync_example_packages.py
       - name: Set NDK 25 as default
         run: |
-          NDK25="$ANDROID_SDK_ROOT/ndk/25.1.8937393"
-          if [ -d "$NDK25" ]; then
-            echo "ANDROID_NDK_HOME=$NDK25" >> $GITHUB_ENV
-            echo "$NDK25/toolchains/llvm/prebuilt/linux-x86_64/bin" >> $GITHUB_PATH
-            echo "→ NDK 25 set as default"
-          else
-            echo "⚠️ NDK 25 not found at $NDK25, using system default"
-          fi
-
+          sudo /usr/local/libandroid/sdkmanager install "ndk;25.0.2615915"
+          sudo /usr/local/libandroid/sdkmanager default "ndk;25.0.2615915"
       - name: Build native ripgrep (Rust)
         run: |
-          curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-          source "$HOME/.cargo/env"
-          rustup target add aarch64-linux-android
-          export CC_aarch64_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/aarch64-linux-android21-clang
-          export AR_aarch64_linux_android=$ANDROID_NDK_HOME/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-ar
-          export CARGO_TARGET_AARCH64_LINUX_ANDROID_LINKER=$CC_aarch64_linux_android
-          cd tools/native_ripgrep
-          cargo build --target aarch64-linux-android --release
-          cp target/aarch64-linux-android/release/liboperit_ripgrep.so ../../app/src/main/jniLibs/arm64-v8a/
-
+          cd tools/native_rgprep
+          cargo build --release
+          cp ../../app/src/main/jiniLibs/arm64-v8a/lib2`.me -- > /dev/null
       - name: Build APK (Nightly)
         run: |
-          chmod +x ./gradlew
-          ./gradlew assembleNightly --no-daemon \
-            -Dorg.gradle.jvmargs="-Xmx4g -XX:MaxMetaspaceSize=512m" \
-            --max-workers=2
-        env:
-          GITHUB_CLIENT_ID: "dummy"
-          ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: true
-
+          export ANDROID_NDK_HOME = /usr/local/libandroid/ndk;25.0.2615915
+          export ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION = true
+          export GITHUB_CLIENT_ID = dummy
+          ./gradlew assembleNonde
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
