@@ -2547,7 +2547,6 @@ Agora é possível usar o modo AutoGLM na interface de diálogo.</string>
     <string name="http_get_test">OBTER HTTP</string>
     <string name="file_upload_test">Carregamento de arquivo</string>
     <string name="manage_cookies_test">Gerenciar cookies</string>
-    <string name="visit_web_test">Visite a página da web</string>
     <string name="use_package_test">Usar pacote</string>
     <string name="query_memory_test">Consultar biblioteca de memórias</string>
     <string name="list_files_test">Listar arquivos</string>
@@ -2582,7 +2581,6 @@ Agora é possível usar o modo AutoGLM na interface de diálogo.</string>
     <string name="http_get_test_desc">Solicitação GET de teste</string>
     <string name="file_upload_test_desc">Teste o upload de arquivos para httpbin</string>
     <string name="manage_cookies_test_desc">Obtenha o cookie do google.com</string>
-    <string name="visit_web_test_desc">Visite o Baidu e extraia conteúdo</string>
     <string name="use_package_test_desc">Teste a ativação de um pacote inexistente</string>
     <string name="query_memory_test_desc">Testar consulta à biblioteca de memórias</string>
     <string name="list_files_test_desc">Listar arquivos no diretório de teste</string>
@@ -4704,9 +4702,6 @@ Agora é possível usar o modo AutoGLM na interface de diálogo.</string>
     <string name="toolreg_link_memories_desc">Memória de link: "%1$s" -&gt; "%2$s" (Tipo: %3$s)</string>
     <string name="toolreg_use_package_desc">Usando o kit de ferramentas: %1$s</string>
     <string name="toolreg_calculate_desc">Expressão calculada: %1$s</string>
-    <string name="toolreg_visit_web_search_link_desc">Visite o link #%1$s dos resultados de pesquisa anteriores (Chave de visita: %2$s...)</string>
-    <string name="toolreg_visit_web_url_desc">Visitar página web: %1$s</string>
-    <string name="toolreg_visit_web_desc">Visite a página da web</string>
     <string name="toolreg_sleep_desc">Dormir %1$d milissegundos</string>
     <string name="toolreg_execute_intent_component_desc">Intenção de execução: Componente %1$s (%2$s)</string>
     <string name="toolreg_execute_intent_action_package_desc">Intenção de execução: %1$s (Pacote: %2$s, Tipo: %3$s)</string>
@@ -5381,7 +5376,6 @@ Agora é possível usar o modo AutoGLM na interface de diálogo.</string>
     <string name="workflow_action_broadcast_result">Enviar transmissão para retornar resultados de IA</string>
     <string name="workflow_action_close_screens">Feche todas as telas virtuais</string>
     <string name="workflow_trigger_manual">gatilho manual</string>
-    <string name="workflow_action_visit_web">Visite a página da web</string>
     <string name="workflow_action_calculate_visit_key">Operação visit_key</string>
     <string name="workflow_action_check_keyword">Se a página da web contém palavras-chave</string>
     <string name="workflow_action_open_first_link">Clique -&gt; Abra o primeiro link</string>
@@ -5595,7 +5589,6 @@ Agora é possível usar o modo AutoGLM na interface de diálogo.</string>
     <string name="webvisit_button_manual_extract">Extração manual</string>
     <string name="webvisit_button_extract">Extrair conteúdo</string>
     <string name="webvisit_cancelled">Operação cancelada</string>
-    <string name="webvisit_webview_unavailable">O WebView não está disponível e o conteúdo não pode ser obtido.</string>
     <string name="webvisit_help_loading_page">Carregando página, aguarde...</string>
     <string name="webvisit_help_countdown">A contagem regressiva automática está em andamento. Clique em \"Cancelar contagem regressiva\" para interromper o processamento automático.</string>
     <string name="webvisit_help_cancel_auto">Clique em \"Cancelar Automático\" para mudar para o modo manual</string>
@@ -5742,9 +5735,6 @@ Agora é possível usar o modo AutoGLM na interface de diálogo.</string>
     <string name="global_display_image_format">Formato de imagem</string>
     <string name="global_display_image_quality">Qualidade de imagem (válido apenas para JPG)</string>
     <string name="global_display_resolution_scale">Escala de resolução (reduzir capturas de tela antes de enviar)</string>
-    <string name="visit_web_wait_time_title">Visite o tempo de espera para acesso à página da Web</string>
-    <string name="visit_web_wait_time_description">Controla quanto tempo visit_web espera antes de retornar automaticamente após buscar o conteúdo da página. Defina como 0 segundos para retornar imediatamente.</string>
-    <string name="visit_web_wait_time_value">%1$d segundos</string>
     <string name="enable_enter_to_send">Entre para enviar</string>
     <string name="enable_enter_to_send_description">Depois de ligado, pressionar Enter na caixa de entrada do bate-papo o enviará diretamente, e a tecla de envio do teclado também será exibida como enviar.</string>
     <string name="tool_collapse_mode_title">Ferramenta dobrável</string>

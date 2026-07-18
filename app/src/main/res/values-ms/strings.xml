@@ -2489,7 +2489,6 @@
     <string name="http_get_test_desc">Ujian permintaan GET</string>
     <string name="file_upload_test_desc">Ujian muat naik fail ke httpbin</string>
     <string name="manage_cookies_test_desc">Dapatkan Kuki google.com</string>
-    <string name="visit_web_test_desc">Lawati Baidu dan ekstrak kandungan</string>
     <string name="use_package_test_desc">Ujian mengaktifkan pakej yang tidak wujud</string>
     <string name="query_memory_test_desc">Ujian pertanyaan pangkalan memori</string>
     <string name="list_files_test_desc">Senaraikan fail dalam direktori ujian</string>
@@ -2944,7 +2943,6 @@ Kini anda boleh menggunakan mod AutoGLM di antara muka perbualan.</string>
     <string name="http_get_test">HTTP GET</string>
     <string name="file_upload_test">Muat naik fail</string>
     <string name="manage_cookies_test">Urus Kuki</string>
-    <string name="visit_web_test">Lawati laman web</string>
     <string name="use_package_test">Gunakan pakej</string>
     <string name="query_memory_test">Kueri bank ingatan</string>
 
@@ -5050,9 +5048,6 @@ Kini anda boleh menggunakan mod AutoGLM di antara muka perbualan.</string>
     <string name="toolreg_link_memories_desc">Paut ingatan: 「%1$s」 -&gt; 「%2$s」 (Jenis: %3$s)</string>
     <string name="toolreg_use_package_desc">Gunakan pakej alat: %1$s</string>
     <string name="toolreg_calculate_desc">Kira ungkapan: %1$s</string>
-    <string name="toolreg_visit_web_search_link_desc">Lawati pautan #%1$s dalam hasil carian sebelumnya (Visit Key: %2$s...)</string>
-    <string name="toolreg_visit_web_url_desc">Lawati laman web: %1$s</string>
-    <string name="toolreg_visit_web_desc">Lawati laman web</string>
     <string name="toolreg_sleep_desc">Lena %1$d milisaat</string>
     <string name="toolreg_execute_intent_component_desc">Laksanakan Intent: komponen %1$s (%2$s)</string>
     <string name="toolreg_execute_intent_action_package_desc">Laksanakan Intent: %1$s (Pakej: %2$s, Jenis: %3$s)</string>
@@ -5662,7 +5657,6 @@ Kini anda boleh menggunakan mod AutoGLM di antara muka perbualan.</string>
     <string name="workflow_action_broadcast_result">Hantar siaran balik hasil AI</string>
     <string name="workflow_action_close_screens">Tutup semua skrin maya</string>
     <string name="workflow_trigger_manual">Pencetus manual</string>
-    <string name="workflow_action_visit_web">Lawati laman web</string>
     <string name="workflow_action_calculate_visit_key">Kira visit_key</string>
     <string name="workflow_action_check_keyword">Adakah laman web mengandungi kata kunci</string>
     <string name="workflow_action_open_first_link">Kena -&gt; Buka pautan pertama</string>
@@ -5881,7 +5875,6 @@ Kini anda boleh menggunakan mod AutoGLM di antara muka perbualan.</string>
     <string name="webvisit_button_manual_extract">Ekstrak Manual</string>
     <string name="webvisit_button_extract">Ekstrak Kandungan</string>
     <string name="webvisit_cancelled">Operasi telah dibatalkan</string>
-    <string name="webvisit_webview_unavailable">WebView tidak tersedia, kandungan tidak dapat diekstrak.</string>
     <string name="webvisit_help_loading_page">Memuatkan halaman, sila tunggu sebentar...</string>
     <string name="webvisit_help_countdown">Kiraan mundur automatik sedang berjalan, klik \"Batal Kiraan Mundur\" untuk hentikan pemprosesan automatik</string>
     <string name="webvisit_help_cancel_auto">Klik \"Batal Automatik\" untuk bertukar ke mod manual</string>
@@ -6237,9 +6230,6 @@ Kini anda boleh menggunakan mod AutoGLM di antara muka perbualan.</string>
     <string name="global_display_image_format">Format imej</string>
     <string name="global_display_image_quality">Kualiti imej (hanya untuk JPG)</string>
     <string name="global_display_resolution_scale">Skala resolusi (kecilkan tangkapan skrin sebelum hantar)</string>
-    <string name="visit_web_wait_time_title">Masa tunggu lawatan web Visit Web</string>
-    <string name="visit_web_wait_time_description">Kawal tempoh tunggu visit_web sebelum kembali automatik selepas ekstrak kandungan halaman. Tetapkan 0 saat untuk kembali serta-merta.</string>
-    <string name="visit_web_wait_time_value">%1$d saat</string>
     <string name="enable_enter_to_send">Hantar dengan Enter</string>
     <string name="enable_enter_to_send_description">Apabila dihidupkan, tekan Enter dalam kotak input sembang akan terus hantar, dan kekunci hantar papan kekunci juga akan dipaparkan sebagai hantar.</string>
     <string name="tool_collapse_mode_title">Alat lipat</string>

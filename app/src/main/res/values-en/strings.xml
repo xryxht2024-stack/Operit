@@ -2811,7 +2811,6 @@
     <string name="http_get_test">HTTP GET</string>
     <string name="file_upload_test">File Upload</string>
     <string name="manage_cookies_test">Manage Cookies</string>
-    <string name="visit_web_test">Visit Web</string>
     <string name="use_package_test">Use Package</string>
     <string name="list_files_test">List Files</string>
     <string name="file_exists_test">File Exists</string>
@@ -2847,7 +2846,6 @@
     <string name="http_get_test_desc">Test GET request</string>
     <string name="file_upload_test_desc">Test file upload to httpbin</string>
     <string name="manage_cookies_test_desc">Get google.com cookies</string>
-    <string name="visit_web_test_desc">Visit Baidu and extract content</string>
     <string name="use_package_test_desc">Test activating a non-existent package</string>
     <string name="list_files_test_desc">List files in test directory</string>
     <string name="file_exists_test_desc">Check if test file exists</string>
@@ -5330,10 +5328,7 @@
     <string name="toolreg_link_memories_desc">Link memories: [%1$s] -&gt; [%2$s] (type: %3$s)</string>
     <string name="toolreg_use_package_desc">Use tool package: %1$s</string>
     <string name="toolreg_calculate_desc">Calculate expression: %1$s</string>
-    <string name="toolreg_visit_web_search_link_desc">Visit link #%1$s from previous search results (Visit Key: %2$s...)</string>
 
-    <string name="toolreg_visit_web_url_desc">Visit web page: %1$s</string>
-    <string name="toolreg_visit_web_desc">Visit web page</string>
     <string name="toolreg_sleep_desc">Sleep %1$d ms</string>
     <string name="toolreg_execute_intent_component_desc">Execute intent: component %1$s (%2$s)</string>
     <string name="toolreg_execute_intent_action_package_desc">Execute intent: %1$s (package: %2$s, type: %3$s)</string>
@@ -6055,7 +6050,6 @@
     <string name="workflow_action_broadcast_result">Send Broadcast AI Result</string>
     <string name="workflow_action_close_screens">Close All Virtual Screens</string>
     <string name="workflow_trigger_manual">Manual Trigger</string>
-    <string name="workflow_action_visit_web">Visit Webpage</string>
     <string name="workflow_action_calculate_visit_key">Calculate visit_key</string>
     <string name="workflow_action_check_keyword">Check if Webpage Contains Keyword</string>
     <string name="workflow_action_open_first_link">Match -> Open First Link</string>
@@ -6291,7 +6285,6 @@
     <string name="webvisit_button_manual_extract">Manual Extract</string>
     <string name="webvisit_button_extract">Extract Content</string>
     <string name="webvisit_cancelled">Operation cancelled</string>
-    <string name="webvisit_webview_unavailable">WebView unavailable, cannot extract content.</string>
     <string name="webvisit_help_loading_page">Loading page, please wait...</string>
     <string name="webvisit_help_countdown">Auto-countdown in progress, click \"Cancel Countdown\" to stop auto-processing</string>
     <string name="webvisit_help_cancel_auto">Click \"Cancel Auto\" to switch to manual mode</string>
@@ -6463,9 +6456,6 @@
     <string name="global_display_image_format">Image Format</string>
     <string name="global_display_image_quality">Quality (JPG only)</string>
     <string name="global_display_resolution_scale">Resolution Scale (downscale before sending)</string>
-    <string name="visit_web_wait_time_title">Visit Web Wait Time</string>
-    <string name="visit_web_wait_time_description">Controls how long visit_web waits before returning after page content is extracted. Set to 0 seconds to return immediately.</string>
-    <string name="visit_web_wait_time_value">%1$d s</string>
     <string name="tool_collapse_mode_title">Collapse Tools</string>
     <string name="tool_collapse_mode_desc">Set the default collapse scope for tool-call groups in messages</string>
     <string name="tool_collapse_mode_read_only">Collapse Multiple Read-only Tools</string>

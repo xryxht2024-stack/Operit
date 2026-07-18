@@ -111,7 +111,7 @@ jobs:
       - name: Build APK (Nightly)
         run: |
           chmod +x ./gradlew
-          ./gradlew assembleNightly --no-daemon \
+          ./gradlew assembleDebug --no-daemon \
             -Dorg.gradle.jvmargs="-Xmx8g -XX:MaxMetaspaceSize=1g" \
             --max-workers=2
         env:
@@ -121,7 +121,7 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: operit-nightly-apk
+          name: operit-debug-apk
           path: |
-            app/build/outputs/apk/nightly/*.apk
+            app/build/outputs/apk/debug/*.apk
           if-no-files-found: error

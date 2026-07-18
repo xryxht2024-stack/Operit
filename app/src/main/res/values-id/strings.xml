@@ -2377,7 +2377,6 @@ Sekarang Anda dapat menggunakan mode AutoGLM di antarmuka percakapan.</string>
     <string name="http_get_test">HTTP GET</string>
     <string name="file_upload_test">Unggah file</string>
     <string name="manage_cookies_test">Kelola Cookie</string>
-    <string name="visit_web_test">Kunjungi halaman web</string>
     <string name="use_package_test">Gunakan paket</string>
     <string name="query_memory_test">Kueri memori</string>
     <string name="list_files_test">Daftar file</string>
@@ -2495,7 +2494,6 @@ Sekarang Anda dapat menggunakan mode AutoGLM di antarmuka percakapan.</string>
     <string name="http_get_test_desc">Uji permintaan GET</string>
     <string name="file_upload_test_desc">Uji unggah file ke httpbin</string>
     <string name="manage_cookies_test_desc">Dapatkan Cookie dari google.com</string>
-    <string name="visit_web_test_desc">Kunjungi Baidu dan ekstrak konten</string>
     <string name="use_package_test_desc">Uji aktivasi paket yang tidak ada</string>
     <string name="query_memory_test_desc">Uji kueri memori</string>
     <string name="list_files_test_desc">Daftar file di direktori tes</string>
@@ -5052,9 +5050,6 @@ Sekarang Anda dapat menggunakan mode AutoGLM di antarmuka percakapan.</string>
     <string name="toolreg_link_memories_desc">Tautkan memori: "%1$s" -&gt; "%2$s" (Tipe: %3$s)</string>
     <string name="toolreg_use_package_desc">Gunakan paket alat: %1$s</string>
     <string name="toolreg_calculate_desc">Hitung ekspresi: %1$s</string>
-    <string name="toolreg_visit_web_search_link_desc">Kunjungi tautan #%1$s dari hasil pencarian sebelumnya (Visit Key: %2$s...)</string>
-    <string name="toolreg_visit_web_url_desc">Kunjungi halaman web: %1$s</string>
-    <string name="toolreg_visit_web_desc">Kunjungi halaman web</string>
     <string name="toolreg_sleep_desc">Tidur %1$d milidetik</string>
     <string name="toolreg_execute_intent_component_desc">Jalankan Intent: komponen %1$s (%2$s)</string>
     <string name="toolreg_execute_intent_action_package_desc">Jalankan Intent: %1$s (Paket: %2$s, Tipe: %3$s)</string>
@@ -5705,7 +5700,6 @@ Sekarang Anda dapat menggunakan mode AutoGLM di antarmuka percakapan.</string>
     <string name="workflow_action_close_screens">Tutup semua layar virtual</string>
     <string name="workflow_trigger_manual">Pemicu manual</string>
 
-    <string name="workflow_action_visit_web">Kunjungi halaman web</string>
     <string name="workflow_action_calculate_visit_key">Hitung visit_key</string>
     <string name="workflow_action_check_keyword">Apakah halaman web mengandung kata kunci</string>
     <string name="workflow_action_open_first_link">Tepat sasaran -&gt; Buka tautan pertama</string>
@@ -5924,7 +5918,6 @@ Sekarang Anda dapat menggunakan mode AutoGLM di antarmuka percakapan.</string>
     <string name="webvisit_button_manual_extract">Ekstrak Manual</string>
     <string name="webvisit_button_extract">Ekstrak Konten</string>
     <string name="webvisit_cancelled">Operasi dibatalkan</string>
-    <string name="webvisit_webview_unavailable">WebView tidak tersedia, tidak dapat mengekstrak konten.</string>
     <string name="webvisit_help_loading_page">Sedang memuat halaman, harap tunggu...</string>
     <string name="webvisit_help_countdown">Hitung mundur otomatis sedang berjalan, klik \"Batalkan hitung mundur\" untuk menghentikan pemrosesan otomatis</string>
     <string name="webvisit_help_cancel_auto">Klik \"Batalkan otomatis\" untuk beralih ke mode manual</string>
@@ -6116,9 +6109,6 @@ Sekarang Anda dapat menggunakan mode AutoGLM di antarmuka percakapan.</string>
     <string name="skill_error_scan_failed">Gagal memindai Skill: %1$s</string>
 
     <string name="global_display_resolution_scale">Skala Resolusi (Perkecil tangkapan layar sebelum dikirim)</string>
-    <string name="visit_web_wait_time_title">Waktu Tunggu Akses Halaman Web Visit Web</string>
-    <string name="visit_web_wait_time_description">Mengontrol durasi tunggu visit_web sebelum kembali otomatis setelah mengekstrak konten halaman. Setel ke 0 detik untuk kembali segera.</string>
-    <string name="visit_web_wait_time_value">%1$d detik</string>
     <string name="enable_enter_to_send">Kirim dengan Enter</string>
     <string name="enable_enter_to_send_description">Saat diaktifkan, menekan Enter di kotak input obrolan akan langsung mengirim, dan tombol kirim keyboard juga akan ditampilkan sebagai kirim.</string>
     <string name="tool_collapse_mode_title">Ciutkan Alat</string>

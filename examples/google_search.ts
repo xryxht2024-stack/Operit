@@ -95,19 +95,7 @@ const googleSearch = (function () {
     }
 
     async function fetchHtmlViaWebVisit(url: string): Promise<any> {
-        const result = await Tools.Net.visit(url);
-        // The result can be a string if the underlying tool returns a simple string.
-        // We'll normalize it to a VisitWebResultData object.
-        if (typeof result === "string") {
-            return {
-                url: url,
-                title: "",
-                content: result,
-                links: [],
-                toString: () => result,
-            };
-        }
-        return result;
+        throw new Error("visit_web has been removed. This package requires visit_web to function.");
     }
 
     // 解析相关逻辑已移除，直接返回 visit 的纯文本结果

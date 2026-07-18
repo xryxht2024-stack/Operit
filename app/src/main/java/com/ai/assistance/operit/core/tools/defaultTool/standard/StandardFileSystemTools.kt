@@ -4647,9 +4647,6 @@ open class StandardFileSystemTools(protected val context: Context) {
     /** Download file from URL */
     open suspend fun downloadFile(tool: AITool): ToolResult {
         val urlParam = tool.parameters.find { it.name == "url" }?.value ?: ""
-        val visitKey = tool.parameters.find { it.name == "visit_key" }?.value ?: ""
-        val linkNumberStr = tool.parameters.find { it.name == "link_number" }?.value
-        val imageNumberStr = tool.parameters.find { it.name == "image_number" }?.value
 
         val destPath = tool.parameters.find { it.name == "destination" }?.value ?: ""
         val headersParam = tool.parameters.find { it.name == "headers" }?.value
