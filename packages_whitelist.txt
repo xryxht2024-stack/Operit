@@ -21,7 +21,6 @@ super_admin.js
 system_tools.js
 tavily.js
 time.js
-various_search.js
 workflow.js
 xai_draw.js
 openai_draw.js
