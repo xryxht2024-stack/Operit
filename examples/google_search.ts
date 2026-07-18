@@ -94,7 +94,7 @@ const googleSearch = (function () {
         return host.replace(/:\d+$/, "");
     }
 
-    async function fetchHtmlViaWebVisit(url: string): Promise<VisitWebResultData> {
+    async function fetchHtmlViaWebVisit(url: string): Promise<any> {
         const result = await Tools.Net.visit(url);
         // The result can be a string if the underlying tool returns a simple string.
         // We'll normalize it to a VisitWebResultData object.
