@@ -10,19 +10,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Clone terminal submodule
+        run: |
+          git clone --depth 1 https://github.com/AAswordman/OperitTerminalCore.git terminal
       - uses: actions/setup-java@v4
         with:
-          java-version: '17'
-          distribution: 'temurin'
+          java-version: "17"
+          distribution: temurin
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
       - name: Install pnpm
         run: npm install -g pnpm
       - name: Setup Android SDK
         uses: android-actions/setup-android@v3
         with:
-          packages: 'platforms;android-34 build-tools;34.0.0 ndk;25.1.8937393'
+          packages: platforms;android-34 build-tools;34.0.0 ndk;25.1.8937393
       - name: Download dependencies
         env:
           GITHUB_CLIENT_ID: dummy
