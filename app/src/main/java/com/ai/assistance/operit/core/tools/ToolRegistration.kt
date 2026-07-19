@@ -1019,13 +1019,6 @@ fun registerAllTools(handler: AIToolHandler, context: Context) {
                 }
             }
     )
-                    !url.isNullOrBlank() -> s(R.string.toolreg_visit_web_url_desc, url)
-                    else -> s(R.string.toolreg_visit_web_desc)
-                }
-            },
-            executor = { tool ->
-                val webVisitTool = ToolGetter.getWebVisitTool(context)
-                webVisitTool.invoke(tool)
             }
     )
 

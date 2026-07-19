@@ -225,8 +225,8 @@ object SystemToolPrompts {
                 name = "download_file",
                 description = "Download a file from the internet. Provide `url` + `destination` to download.",
                 parametersStructured = listOf(
-                    ToolParameterSchema(name = "url", type = "string", description = "optional, file URL. If omitted, use visit_key + link_number/image_number to download from a previous visit_web result", required = false),
-                    ToolParameterSchema(name = "visit_key", type = "string", description = "optional, visitKey from a previous visit_web result", required = false),
+                    ToolParameterSchema(name = "url", type = "string", description = "optional file URL", required = false),
+                    ToolParameterSchema(name = "visit_key", type = "string", description = "optional, not used", required = false),
                     ToolParameterSchema(name = "link_number", type = "integer", description = "optional, 1-based link index from Results (use with visit_key)", required = false),
                     ToolParameterSchema(name = "image_number", type = "integer", description = "optional, 1-based image index from Images (use with visit_key)", required = false),
                     ToolParameterSchema(name = "destination", type = "string", description = "save path", required = true),
@@ -372,8 +372,8 @@ object SystemToolPrompts {
                 name = "download_file",
                 description = "从互联网下载文件。提供 `url` + `destination` 直接下载。",
                 parametersStructured = listOf(
-                    ToolParameterSchema(name = "url", type = "string", description = "可选, 文件URL。不传时可使用 visit_key + link_number/image_number 从上一次 visit_web 结果按编号下载", required = false),
-                    ToolParameterSchema(name = "visit_key", type = "string", description = "可选, 上一次 visit_web 返回的 visitKey", required = false),
+                    ToolParameterSchema(name = "url", type = "string", description = "可选, 文件URL", required = false),
+                    ToolParameterSchema(name = "visit_key", type = "string", description = "可选, 不常用", required = false),
                     ToolParameterSchema(name = "link_number", type = "integer", description = "可选, 整数, Results 中的链接编号（从1开始，需要配合 visit_key）", required = false),
                     ToolParameterSchema(name = "image_number", type = "integer", description = "可选, 整数, Images 中的图片编号（从1开始，需要配合 visit_key）", required = false),
                     ToolParameterSchema(name = "destination", type = "string", description = "保存路径", required = true),

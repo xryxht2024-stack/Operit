@@ -182,15 +182,9 @@ fun getJsToolsDefinition(): String {
                 visit: (params) => {
                     if (typeof params === 'string') {
                         // 向后兼容，如果只传入一个字符串，则假定为URL
-                        return toolCall("visit_web", { url: params });
-                    }
-                    // 否则，假定为参数对象
                     if (params && typeof params === 'object' && params.headers !== undefined && typeof params.headers === 'object') {
                         params = { ...params, headers: JSON.stringify(params.headers) };
                     }
-                    return toolCall("visit_web", params);
-                },
-                browserNavigate: (urlOrOptions) => {
                     const params = typeof urlOrOptions === 'string' ? { url: urlOrOptions } : { ...(urlOrOptions || {}) };
                     if (!params.url) {
                         throw new Error("browserNavigate requires url");
