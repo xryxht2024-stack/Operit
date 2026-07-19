@@ -99,9 +99,6 @@ object ToolGetter {
      * @param context 应用上下文
      * @return Web访问工具实现（只有标准版本）
      */
-    fun getWebVisitTool(context: Context): StandardWebVisitTool {
-        return StandardWebVisitTool(context)
-    }
 
     /**
      * 获取会话型 Web 工具

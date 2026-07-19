@@ -241,7 +241,7 @@ fun registerAllTools(handler: AIToolHandler, context: Context) {
             handler.getToolPermissionSystem().checkToolPermission(proxiedTool)
         }
         if (!hasPermission) {
-            val errorMessage = "User cancelled the tool execution."
+            val errorMessage = "此工具已被平台禁用"
             handler.notifyToolPermissionChecked(
                 proxiedTool,
                 granted = false,
@@ -1019,22 +1019,6 @@ fun registerAllTools(handler: AIToolHandler, context: Context) {
                 }
             }
     )
-
-    // Web搜索工具
-    handler.registerTool(
-            name = "visit_web",
-            descriptionGenerator = { tool ->
-                val url = tool.parameters.find { it.name == "url" }?.value
-                val visitKey = tool.parameters.find { it.name == "visit_key" }?.value
-                val linkNumber = tool.parameters.find { it.name == "link_number" }?.value
-
-                when {
-                    !visitKey.isNullOrBlank() && !linkNumber.isNullOrBlank() ->
-                            s(
-                                    R.string.toolreg_visit_web_search_link_desc,
-                                    linkNumber,
-                                    visitKey.take(8)
-                            )
                     !url.isNullOrBlank() -> s(R.string.toolreg_visit_web_url_desc, url)
                     else -> s(R.string.toolreg_visit_web_desc)
                 }
