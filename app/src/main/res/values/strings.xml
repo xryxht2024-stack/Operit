@@ -2887,9 +2887,7 @@
     <string name="device_info_test">设备信息</string>
     <string name="http_get_test">HTTP GET</string>
     <string name="file_upload_test">文件上传</string>
-    <string name="manage_cookies_test">管理Cookie</string>
-    <string name="visit_web_test">访问网页</string>
-    <string name="use_package_test">使用包</string>
+    <string name="manage_cookies_test">管理Cookie</string>    <string name="use_package_test">使用包</string>
     <string name="query_memory_test">查询记忆库</string>
     <string name="list_files_test">列出文件</string>
     <string name="file_exists_test">文件是否存在</string>
@@ -2924,9 +2922,7 @@
     <string name="device_info_test_desc">获取设备详细信息</string>
     <string name="http_get_test_desc">测试GET请求</string>
     <string name="file_upload_test_desc">测试上传文件到httpbin</string>
-    <string name="manage_cookies_test_desc">获取google.com的Cookie</string>
-    <string name="visit_web_test_desc">访问Baidu并提取内容</string>
-    <string name="use_package_test_desc">测试激活一个不存在的包</string>
+    <string name="manage_cookies_test_desc">获取google.com的Cookie</string>    <string name="use_package_test_desc">测试激活一个不存在的包</string>
     <string name="query_memory_test_desc">测试查询记忆库</string>
     <string name="list_files_test_desc">列出测试目录的文件</string>
     <string name="file_exists_test_desc">检查测试文件是否存在</string>
@@ -5549,12 +5545,7 @@
     <string name="toolreg_delete_memory_desc">删除记忆: %1$s</string>
     <string name="toolreg_link_memories_desc">链接记忆: 「%1$s」 -&gt; 「%2$s」 (类型: %3$s)</string>
     <string name="toolreg_use_package_desc">使用工具包: %1$s</string>
-    <string name="toolreg_calculate_desc">计算表达式: %1$s</string>
-    <string name="toolreg_visit_web_search_link_desc">访问先前搜索结果中的链接 #%1$s (Visit Key: %2$s...)</string>
-
-    <string name="toolreg_visit_web_url_desc">访问网页: %1$s</string>
-    <string name="toolreg_visit_web_desc">访问网页</string>
-    <string name="toolreg_sleep_desc">休眠 %1$d毫秒</string>
+    <string name="toolreg_calculate_desc">计算表达式: %1$s</string>    <string name="toolreg_sleep_desc">休眠 %1$d毫秒</string>
     <string name="toolreg_execute_intent_component_desc">执行Intent: 组件 %1$s (%2$s)</string>
     <string name="toolreg_execute_intent_action_package_desc">执行Intent: %1$s (包: %2$s, 类型: %3$s)</string>
     <string name="toolreg_execute_intent_action_desc">执行Intent: %1$s (类型: %2$s)</string>
@@ -6310,9 +6301,7 @@
     <string name="workflow_action_stop_floating">停止悬浮窗</string>
     <string name="workflow_action_broadcast_result">发送广播回传AI结果</string>
     <string name="workflow_action_close_screens">关闭所有虚拟屏幕</string>
-    <string name="workflow_trigger_manual">手动触发</string>
-    <string name="workflow_action_visit_web">访问网页</string>
-    <string name="workflow_action_calculate_visit_key">运算 visit_key</string>
+    <string name="workflow_trigger_manual">手动触发</string>    <string name="workflow_action_calculate_visit_key">运算 visit_key</string>
     <string name="workflow_action_check_keyword">网页是否包含关键字</string>
     <string name="workflow_action_open_first_link">命中 -> 打开第1个链接</string>
     <string name="workflow_action_visit_backup">未命中 -> 访问备用页面</string>
@@ -6546,9 +6535,7 @@
     <string name="webvisit_button_continue">继续处理</string>
     <string name="webvisit_button_manual_extract">手动提取</string>
     <string name="webvisit_button_extract">提取内容</string>
-    <string name="webvisit_cancelled">操作已取消</string>
-    <string name="webvisit_webview_unavailable">WebView不可用，无法提取内容。</string>
-    <string name="webvisit_help_loading_page">正在加载页面，请稍候...</string>
+    <string name="webvisit_cancelled">操作已取消</string>    <string name="webvisit_help_loading_page">正在加载页面，请稍候...</string>
     <string name="webvisit_help_countdown">正在自动倒计时，点击\"取消倒计时\"可停止自动处理</string>
     <string name="webvisit_help_cancel_auto">点击\"取消自动\"可切换到手动模式</string>
     <string name="webvisit_help_manual_mode">已切换到手动模式，点击\"手动提取\"继续</string>
@@ -6718,11 +6705,7 @@
     <string name="global_display_screenshot_settings">自动化截图设置</string>
     <string name="global_display_image_format">图片格式</string>
     <string name="global_display_image_quality">画质（仅对 JPG 生效）</string>
-    <string name="global_display_resolution_scale">分辨率缩放（发送前缩小截图）</string>
-    <string name="visit_web_wait_time_title">Visit Web 网页访问等待时间</string>
-    <string name="visit_web_wait_time_description">控制 visit_web 在提取页面内容后自动返回前的等待时长。设为 0 秒会立即返回。</string>
-    <string name="visit_web_wait_time_value">%1$d 秒</string>
-    <string name="enable_enter_to_send">回车发送</string>
+    <string name="global_display_resolution_scale">分辨率缩放（发送前缩小截图）</string>    <string name="enable_enter_to_send">回车发送</string>
     <string name="enable_enter_to_send_description">开启后，聊天输入框按回车会直接发送，键盘发送键也会显示为发送。</string>
     <string name="tool_collapse_mode_title">折叠工具</string>
     <string name="tool_collapse_mode_desc">设置消息中工具调用分组的默认折叠范围</string>
