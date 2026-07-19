@@ -1,0 +1,57 @@
+name: Build Operit APK
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [remove-visit-web-v1.11.0]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          ref: remove-visit-web-v1.11.0
+      - uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Install pnpm
+        run: npm install -g pnpm
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3
+        with:
+          packages: 'platforms;android-34 build-tools;34.0.0 ndk;25.1.8937393'
+      - name: Download dependencies
+        env:
+          GITHUB_CLIENT_ID: dummy
+        run: |
+          pip install gdown
+          mkdir -p deps && cd deps
+          for fid in 1g-Q_i7cf6Ua4KX9ZM6V282EEZvTVVfF7; do
+            gdown --folder "https://drive.google.com/drive/folders/$fid" -O . || true
+          done
+          ls -la
+          for f in *.zip; do unzip -o "$f" -d ..; done
+          cd ..
+      - name: Install npm deps
+        run: |
+          npm install
+          npm --prefix web-chat install
+      - name: Build webchat
+        run: npm run build:webchat
+      - name: Sync packages
+        run: python3 ./sync_example_packages.py
+      - name: Build APK
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleNightly
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: operit-apk
+          path: app/build/outputs/apk/nightly/app-nightly.apk
